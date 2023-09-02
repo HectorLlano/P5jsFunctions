@@ -1,2 +1,2 @@
 # P5jsFunctions
-Some imteresting functions to use in P5.js
+Some interesting functions to use in P5.js
