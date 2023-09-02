@@ -1,0 +1,38 @@
+let font;
+const text = "H.";
+const textSize = 400;
+
+function preload() {
+  font = loadFont("Merriweather-Regular.ttf");
+}
+
+function setup() {
+  createCanvas(windowWidth, windowHeight, SVG);
+}
+
+function draw() {
+  background(0);
+  stroke(255);
+  noFill();
+  
+  const bounds = font.textBounds(text, width/2, height/2, textSize);
+  
+  rect(width/2 - bounds.w / 2, height/2 - bounds.h / 2, bounds.w, bounds.h);
+  
+  const points = font.textToPoints(text, width/2 - bounds.w / 2, height/2 + bounds.h / 2, textSize);
+  
+  beginShape();
+  for (let i = 0; i < points.length; i++) {
+    const point = points[i];
+    vertex(point.x, point.y);
+  }
+  endShape();
+  
+  noLoop();
+}
+
+function keyPressed() {
+  if (keyCode === 83) { // if "s" is pressed
+    save("sketch.svg");
+  }
+}
